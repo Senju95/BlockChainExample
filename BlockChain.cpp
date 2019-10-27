@@ -21,21 +21,5 @@ void BlockChain::AddBlock(Block bNew) {
     chain.push_back(bNew);
 }
 
-//return false if a block in the chain has been modified
-bool BlockChain::verifyChain(){
-    for(int i = 1; i < chain.size(); i++){
-        Block block = getBlock(i);
-        if(block.hasBeenChanged())
-            return false;
-    }
-    return true;
-}
-
-//return a specific block of the chain
-Block& BlockChain::getBlock(int position){
-    if(position < 1 && position >= chain.size())
-        throw std::invalid_argument( "Invalid number" );
-    return chain.at(position);
-}
 
 

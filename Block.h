@@ -19,9 +19,10 @@ public:
  
     void MineBlock(uint32_t nDifficulty);
     void showBlockInformation();
-    bool hasBeenChanged();
-    void setNNonce(int);
- 
+    void setSupplyChain(SupplyChain);
+    //Para el taller
+    //bool hasBeenChanged();
+    
 private:
     uint32_t nIndex;
     int64_t nNonce;

@@ -2,6 +2,7 @@
 #include "sha256.h"
 
 
+//constructor
 Block::Block(uint32_t nIndexIn, const string &sDataIn,SupplyChain supplyChain) : nIndex(nIndexIn), sData(sDataIn) {
     nNonce = -1;
     tTime = time(nullptr);
@@ -9,13 +10,14 @@ Block::Block(uint32_t nIndexIn, const string &sDataIn,SupplyChain supplyChain) :
 }
 
 
-
+//create the block's hash
 inline string Block::CalculateHash() const {
     stringstream ss;
     ss << nIndex << tTime << sData << nNonce << prevHash << supplyChain.toString();
     return sha256(ss.str());
 }
 
+//simulate how a block is mined 
 void Block::MineBlock(uint32_t nDifficulty) {
    char cstr[nDifficulty + 1];
     for (uint32_t i = 0; i < nDifficulty; ++i) {
@@ -35,23 +37,21 @@ void Block::MineBlock(uint32_t nDifficulty) {
 }
 
 
+//returns block's hash
 string Block::GetHash() {
     return sHash;
 }
 
+//Show information of the block
 void Block::showBlockInformation(){
     cout <<"Previous block's hash code:" << prevHash<< endl;
     cout << "Time stamp:" << ctime(&tTime) << endl;
-    cout << "Supplychain information:" << endl; 
+    cout << "SupplyChain information:" << endl; 
     supplyChain.showInformation();
-    
 }
 
 
-bool Block::hasBeenChanged(){
-    return sHash != CalculateHash();
+void Block::setSupplyChain(SupplyChain newSupply){
+    this->supplyChain = newSupply;
 }
 
-void Block::setNNonce(int value){
-    this->nNonce = value;
-}

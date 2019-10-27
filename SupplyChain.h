@@ -13,6 +13,7 @@ public:
     string toString() const;
     void showInformation();
     
+    
 private:
     string productName;
     unsigned int invoiceQuantity;
