@@ -1,6 +1,8 @@
 #include "Block.h"
 #include "sha256.h"
 
+//linea para compilar windows
+#pragma warning(disable : 4996)
 
 //constructor
 Block::Block(uint32_t nIndexIn, const string &sDataIn,SupplyChain supplyChain) : nIndex(nIndexIn), sData(sDataIn) {
@@ -19,11 +21,15 @@ inline string Block::CalculateHash() const {
 
 //simulate how a block is mined 
 void Block::MineBlock(uint32_t nDifficulty) {
-   char cstr[nDifficulty + 1];
-    for (uint32_t i = 0; i < nDifficulty; ++i) {
+   /*
+    *Cambio para que funcione en windows
+    * hay que usar una escribir la dificultad a mano
+    */ 
+   char cstr[4 + 1];
+    for (uint32_t i = 0; i < 4; ++i) {
         cstr[i] = '0';
     }
-    cstr[nDifficulty] = '\0';
+    cstr[4] = '\0';
 
  
     string str(cstr);
@@ -51,7 +57,10 @@ void Block::showBlockInformation(){
 }
 
 
+bool Block::hasBeenChanged(){
+    return sHash != CalculateHash();
+}
+
 void Block::setSupplyChain(SupplyChain newSupply){
     this->supplyChain = newSupply;
 }
-

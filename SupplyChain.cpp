@@ -1,6 +1,9 @@
 #include "SupplyChain.h"
 #include <sstream>
 
+//linea para compilar windows
+#pragma warning(disable : 4996)
+
 SupplyChain::SupplyChain(string productName, unsigned int invoiceQuantity, string provider) :
                         productName(productName), 
                         invoiceQuantity(invoiceQuantity), 

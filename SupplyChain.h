@@ -12,11 +12,11 @@ public:
     SupplyChain();
     string toString() const;
     void showInformation();
-    
+    unsigned int invoiceQuantity;
     
 private:
     string productName;
-    unsigned int invoiceQuantity;
+    
     time_t arrivalDate;
     string provider;
     

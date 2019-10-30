@@ -16,10 +16,10 @@ class BlockChain {
 public:
     BlockChain(int);
     void AddBlock(Block bNew);
+    bool verifyChain();
     
-    //Para el taller
-    //bool verifyChain();
-    //Block& getBlock(int);
+    Block& getBlock(int);
+    
 private:
     uint32_t difficulty;
     vector<Block> chain;
